@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARJU TOP-UP STORE</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Poppins', sans-serif; }
+        body { background: #0c0f1d; color: #ffffff; padding: 15px; padding-bottom: 80px; }
+        
+        .header { background: linear-gradient(135deg, #e2136e 0%, #2b0018 100%); padding: 20px; border-radius: 15px; text-align: center; margin-bottom: 25px; box-shadow: 0 5px 20px rgba(226, 19, 110, 0.2); }
+        .header h1 { font-size: 22px; font-weight: 700; text-transform: uppercase; }
+        .header p { font-size: 12px; opacity: 0.8; margin-top: 5px; }
+
+        h2 { font-size: 16px; color: #ff409f; margin: 25px 0 10px 5px; border-left: 4px solid #e2136e; padding-left: 8px; }
+        .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+        
+        .card { background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(226, 19, 110, 0.15); border-radius: 12px; padding: 12px; text-align: center; display: flex; flex-direction: column; justify-content: space-between; transition: 0.2s; }
+        .card:active { transform: scale(0.97); border-color: #e2136e; }
+        .card h3 { font-size: 13px; font-weight: 600; margin-bottom: 5px; color: #fff; }
+        .price { font-size: 15px; color: #ffeb3b; font-weight: 700; margin-bottom: 8px; }
+        
+        .buy-btn { background: linear-gradient(45deg, #e2136e, #ff409f); color: white; border: none; padding: 8px; border-radius: 20px; font-size: 11px; font-weight: bold; cursor: pointer; width: 100%; text-transform: uppercase; }
+
+        /* Modal Style */
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); justify-content: center; align-items: center; z-index: 1000; padding: 20px; }
+        .modal-content { background: #15192e; border: 2px solid #e2136e; border-radius: 15px; padding: 20px; width: 100%; max-width: 350px; position: relative; }
+        .close-btn { position: absolute; top: 10px; right: 15px; font-size: 24px; color: #fff; cursor: pointer; }
+        .modal h3 { margin-bottom: 10px; color: #e2136e; text-align: center; font-size: 18px; }
+        .modal p { font-size: 12px; color: #ccc; margin-bottom: 15px; text-align: center; line-height: 1.5; }
+        
+        input, select { width: 100%; padding: 10px; margin-bottom: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(226, 19, 110, 0.3); border-radius: 8px; color: white; font-size: 14px; }
+        input:focus, select:focus { border-color: #e2136e; outline: none; }
+        option { background: #15192e; color: #fff; }
+
+        .telegram-support { position: fixed; bottom: 20px; right: 20px; background: #0088cc; color: white; padding: 10px 18px; border-radius: 30px; font-weight: bold; font-size: 13px; text-decoration: none; box-shadow: 0 4px 15px rgba(0, 136, 204, 0.4); z-index: 999; }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>ARJU TOP-UP STORE</h1>
+        <p>১০০% নিরাপদ ও ১-৫ মিনিটে দ্রুত ডেলিভারি</p>
+    </div>
+
+    <h2>ফ্রি ফায়ার বাংলাদেশ সার্ভার (ID Code)</h2>
+    <div class="grid">
+        <div class="card"><h3>২৫ ডায়মন্ড</h3><div class="price">42 TK</div><button class="buy-btn" onclick="openModal('২৫ ডায়মন্ড', '42 TK')">Buy Now</button></div>
+        <div class="card"><h3>৫০ ডায়মন্ড</h3><div class="price">55 TK</div><button class="buy-btn" onclick="openModal('৫০ ডায়মন্ড', '55 TK')">Buy Now</button></div>
+        <div class="card"><h3>১১৫ ডায়মন্ড</h3><div class="price">99 TK</div><button class="buy-btn" onclick="openModal('১১৫ ডায়মন্ড', '99 TK')">Buy Now</button></div>
+        <div class="card"><h3>২৪৪০ ডায়মন্ড</h3><div class="price">178 TK</div><button class="buy-btn" onclick="openModal('২৪০ ডায়মন্ড', '178 TK')">Buy Now</button></div>
+        <div class="card"><h3>৬১০ ডায়মন্ড</h3><div class="price">420 TK</div><button class="buy-btn" onclick="openModal('৬১০ ডায়মন্ড', '420 TK')">Buy Now</button></div>
+        <div class="card"><h3>১২৪০ ডায়মন্ড</h3><div class="price">820 TK</div><button class="buy-btn" onclick="openModal('১২৪০ ডায়মন্ড', '820 TK')">Buy Now</button></div>
+    </div>
+
+    <h2>উইকলি / মান্থলি প্যাক</h2>
+    <div class="grid">
+        <div class="card"><h3>Weekly Pass</h3><div class="price">178 TK</div><button class="buy-btn" onclick="openModal('Weekly Pass', '178 TK')">Buy Now</button></div>
+        <div class="card"><h3>Monthly Pass</h3><div class="price">810 TK</div><button class="buy-btn" onclick="openModal('Monthly Pass', '810 TK')">Buy Now</button></div>
+        <div class="card"><h3>1Weekly + 1Monthly</h3><div class="price">968 TK</div><button class="buy-btn" onclick="openModal('1Weekly + 1Monthly', '968 TK')">Buy Now</button></div>
+    </div>
+
+    <h2>লেভেল আপ পাস</h2>
+    <div class="grid">
+        <div class="card"><h3>Full Level Up Pass</h3><div class="price">465 TK</div><button class="buy-btn" onclick="openModal('Full Level Up Pass', '465 TK')">Buy Now</button></div>
+        <div class="card">
+            <h3>Level Up Packages</h3>
+            <div class="price">Sub-Packs</div>
+            <button class="buy-btn" onclick="openDropdownModal('Level Up Pass Sub-Packs', ['Level 6 (60 TK)', 'Level 10 (95 TK)', 'Level 15 (95 TK)', 'Level 20 (95 TK)', 'Level 25 (95 TK)', 'Level 30 (125 TK)'])">View Packs</button>
+        </div>
+    </div>
+
+    <h2>উইকলি লাইট</h2>
+    <div class="grid">
+        <div class="card"><h3>Weekly Lite</h3><div class="price">70 TK</div><button class="buy-btn" onclick="openModal('Weekly Lite', '70 TK')">Buy Now</button></div>
+        <div class="card"><h3>2X Weekly Lite</h3><div class="price">110 TK</div><button class="buy-btn" onclick="openModal('2X Weekly Lite', '110 TK')">Buy Now</button></div>
+        <div class="card"><h3>5X Weekly Lite</h3><div class="price">245 TK</div><button class="buy-btn" onclick="openModal('5X Weekly Lite', '245 TK')">Buy Now</button></div>
+    </div>
+
+    <h2>স্পেশাল অফার ও ডিসকাউন্ট</h2>
+    <div class="grid">
+        <div class="card"><h3>Weekly Discount</h3><div class="price">172 TK</div><button class="buy-btn" onclick="openModal('Weekly Discount', '172 TK')">Buy Now</button></div>
+        <div class="card"><h3>Monthly Discount</h3><div class="price">770 TK</div><button class="buy-btn" onclick="openModal('Monthly Discount', '770 TK')">Buy Now</button></div>
+        <div class="card">
+            <h3>১ টাকার উইকলি</h3>
+            <div class="price">Multi-Pack</div>
+            <button class="buy-btn" onclick="openDropdownModal('১ টাকার উইকলি', ['1 Taka Weekly (21 TK)', '2 Taka Weekly (22 TK)'])">View Packs</button>
+        </div>
+        <div class="card">
+            <h3>২০ টাকার গেম</h3>
+            <div class="price">Multi-Box</div>
+            <button class="buy-btn" onclick="openDropdownModal('২০ টাকার গেম', ['20 Takar Box (40 TK)', '2000 Takar Box (2020 TK)', '20000 Takar Box (20020 TK)'])">View Boxes</button>
+        </div>
+    </div>
+
+    <div class="modal" id="orderModal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <h3 id="selectedPackage">অর্ডার ফর্ম</h3>
+            <p>বিকাশ পার্সোনাল নাম্বার: <b style="color: #ff3399; font-size: 15px;">01945410070</b><br>টাকা পাঠিয়ে নিচের ফর্মটি পূরণ করুন।</p>
+            
+            <form id="topupForm">
+                <input type="hidden" id="packageInput">
+                <div id="subPackContainer" style="display: none;">
+                    <select id="subPackSelect"></select>
+                </div>
+                <input type="number" id="player_id" placeholder="Player UID" required>
+                <input type="number" id="amount" placeholder="টাকার পরিমাণ (Tk)" required>
+                <input type="text" id="trx_id" placeholder="bKash TrxID (১০ অক্ষর)" required>
+                <button type="submit" class="buy-btn" style="padding: 12px; font-size: 14px;" id="submitBtn">Confirm Order</button>
+            </form>
+        </div>
+    </div>
+
+    <a href="https://t.me/arju_topup_store_bot" target="_blank" class="telegram-support">💬 Support</a>
+
+    <script>
+        function openModal(packageName, price) {
+            document.getElementById('orderModal').style.display = 'flex';
+            document.getElementById('selectedPackage').innerText = packageName + " (" + price + ")";
+            document.getElementById('packageInput').value = packageName + " (" + price + ")";
+            document.getElementById('subPackContainer').style.display = 'none';
+        }
+
+        function openDropdownModal(categoryName, optionsArray) {
+            document.getElementById('orderModal').style.display = 'flex';
+            document.getElementById('selectedPackage').innerText = categoryName;
+            document.getElementById('packageInput').value = categoryName;
+            
+            const select = document.getElementById('subPackSelect');
+            select.innerHTML = '';
+            optionsArray.forEach(opt => {
+                let el = document.createElement('option');
+                el.value = opt;
+                el.innerText = opt;
+                select.appendChild(el);
+            });
+            document.getElementById('subPackContainer').style.display = 'block';
+        }
+
+        function closeModal() { document.getElementById('orderModal').style.display = 'none'; }
+        
+        document.getElementById('topupForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const uid = document.getElementById('player_id').value;
+            const amount = document.getElementById('amount').value;
+            const trxId = document.getElementById('trx_id').value;
+            let pack = document.getElementById('packageInput').value;
+            
+            if(document.getElementById('subPackContainer').style.display === 'block') {
+                pack = pack + " - " + document.getElementById('subPackSelect').value;
+            }
+
+            const submitBtn = document.getElementById('submitBtn');
+            submitBtn.innerText = "Sending Order...";
+            submitBtn.disabled = true;
+
+            const botToken = '8580807277:AAGfBJl7NICn7rFVkggpq-EDOMoHX32MSgY';
+            const chatId = '8431829574'; 
+
+            const message = `🔥 *নতুন অর্ডার (Arju Store)!* 🔥\n\n` +
+                            `🎮 *Player UID:* \`${uid}\`\n` +
+                            `💎 *Package:* ${pack}\n` +
+                            `💰 *Paid Amount:* ${amount} Tk\n` +
+                            `✅ *bKash TrxID:* \`${trxId}\`\n\n` +
+                            `⏳ দ্রুত চেক করে ডায়মন্ড দিয়ে দিন!`;
+
+            fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ chat_id: chatId, text: message, parse_mode: 'Markdown' })
+            })
+            .then(res => res.json())
+            .then(data => {
+                if(data.ok) {
+                    alert("✅ অর্ডার সফল হয়েছে! ৫ মিনিটে ডায়মন্ড পেয়ে যাবেন।");
+                    document.getElementById('topupForm').reset();
+                    closeModal();
+                } else { alert("সমস্যা হয়েছে, আবার চেষ্টা করুন।"); }
+            })
+            .catch(() => alert('কোথাও ভুল হয়েছে!'))
+            .finally(() => { submitBtn.innerText = "Confirm Order"; submitBtn.disabled = false; });
+        });
+    </script>
+</body>
+</html>
