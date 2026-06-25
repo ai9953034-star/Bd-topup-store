@@ -3,186 +3,393 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ARJU TOP-UP STORE</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <title>Arju Topup Store</title>
     <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Poppins', sans-serif; }
-        body { background: #0c0f1d; color: #ffffff; padding: 15px; padding-bottom: 80px; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background-color: #0f172a;
+            color: #ffffff;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        h1 {
+            color: #38bdf8;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        h2 {
+            color: #38bdf8;
+            margin: 30px 0 15px 0;
+            width: 100%;
+            max-width: 1000px;
+            border-left: 4px solid #38bdf8;
+            padding-left: 10px;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 20px;
+            width: 100%;
+            max-width: 1000px;
+            margin-bottom: 20px;
+        }
+        .card {
+            background-color: #1e293b;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            border: 1px solid #334155;
+            transition: 0.3s;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: #38bdf8;
+        }
+        .card h3 {
+            font-size: 16px;
+            margin-bottom: 10px;
+            color: #f1f5f9;
+        }
+        .price {
+            font-size: 20px;
+            font-weight: bold;
+            color: #10b981;
+            margin-bottom: 15px;
+        }
+        .buy-btn {
+            background-color: #38bdf8;
+            color: #0f172a;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            transition: 0.3s;
+        }
+        .buy-btn:hover {
+            background-color: #0ea5e9;
+        }
+        .buy-btn:disabled {
+            background-color: #475569;
+            color: #94a3b8;
+            cursor: not-allowed;
+        }
         
-        .header { background: linear-gradient(135deg, #e2136e 0%, #2b0018 100%); padding: 20px; border-radius: 15px; text-align: center; margin-bottom: 25px; box-shadow: 0 5px 20px rgba(226, 19, 110, 0.2); }
-        .header h1 { font-size: 22px; font-weight: 700; text-transform: uppercase; }
-        .header p { font-size: 12px; opacity: 0.8; margin-top: 5px; }
-
-        h2 { font-size: 16px; color: #ff409f; margin: 25px 0 10px 5px; border-left: 4px solid #e2136e; padding-left: 8px; }
-        .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
-        
-        .card { background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(226, 19, 110, 0.15); border-radius: 12px; padding: 12px; text-align: center; display: flex; flex-direction: column; justify-content: space-between; transition: 0.2s; }
-        .card:active { transform: scale(0.97); border-color: #e2136e; }
-        .card h3 { font-size: 13px; font-weight: 600; margin-bottom: 5px; color: #fff; }
-        .price { font-size: 15px; color: #ffeb3b; font-weight: 700; margin-bottom: 8px; }
-        
-        .buy-btn { background: linear-gradient(45deg, #e2136e, #ff409f); color: white; border: none; padding: 8px; border-radius: 20px; font-size: 11px; font-weight: bold; cursor: pointer; width: 100%; text-transform: uppercase; }
-
-        /* Modal Style */
-        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); justify-content: center; align-items: center; z-index: 1000; padding: 20px; }
-        .modal-content { background: #15192e; border: 2px solid #e2136e; border-radius: 15px; padding: 20px; width: 100%; max-width: 350px; position: relative; }
-        .close-btn { position: absolute; top: 10px; right: 15px; font-size: 24px; color: #fff; cursor: pointer; }
-        .modal h3 { margin-bottom: 10px; color: #e2136e; text-align: center; font-size: 18px; }
-        .modal p { font-size: 12px; color: #ccc; margin-bottom: 15px; text-align: center; line-height: 1.5; }
-        
-        input, select { width: 100%; padding: 10px; margin-bottom: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(226, 19, 110, 0.3); border-radius: 8px; color: white; font-size: 14px; }
-        input:focus, select:focus { border-color: #e2136e; outline: none; }
-        option { background: #15192e; color: #fff; }
-
-        .telegram-support { position: fixed; bottom: 20px; right: 20px; background: #0088cc; color: white; padding: 10px 18px; border-radius: 30px; font-weight: bold; font-size: 13px; text-decoration: none; box-shadow: 0 4px 15px rgba(0, 136, 204, 0.4); z-index: 999; }
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            padding: 20px;
+        }
+        .modal-content {
+            background-color: #1e293b;
+            padding: 25px;
+            border-radius: 15px;
+            width: 100%;
+            max-width: 400px;
+            position: relative;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            border: 1px solid #334155;
+        }
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 24px;
+            color: #94a3b8;
+            cursor: pointer;
+        }
+        .close-btn:hover {
+            color: #ffffff;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 14px;
+            color: #94a3b8;
+        }
+        input, select {
+            width: 100%;
+            padding: 10px;
+            background-color: #0f172a;
+            border: 1px solid #334155;
+            border-radius: 6px;
+            color: white;
+            font-size: 15px;
+            outline: none;
+        }
+        input:focus, select:focus {
+            border-color: #38bdf8;
+        }
+        .submit-btn {
+            background-color: #10b981;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 6px;
+            width: 100%;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .submit-btn:hover {
+            background-color: #059669;
+        }
+        .help-link {
+            display: block;
+            text-align: center;
+            margin-top: 30px;
+            color: #a78bfa;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .help-link:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
 
-    <div class="header">
-        <h1>ARJU TOP-UP STORE</h1>
-        <p>১০০% নিরাপদ ও ১-৫ মিনিটে দ্রুত ডেলিভারি</p>
-    </div>
+    <h1>Arju Topup Store</h1>
 
-    <h2>ফ্রি ফায়ার বাংলাদেশ সার্ভার (ID Code)</h2>
+    <h2>💎 আইডি কোড টপ-আপ</h2>
     <div class="grid">
         <div class="card"><h3>২৫ ডায়মন্ড</h3><div class="price">42 TK</div><button class="buy-btn" onclick="openModal('২৫ ডায়মন্ড', '42 TK')">Buy Now</button></div>
         <div class="card"><h3>৫০ ডায়মন্ড</h3><div class="price">55 TK</div><button class="buy-btn" onclick="openModal('৫০ ডায়মন্ড', '55 TK')">Buy Now</button></div>
         <div class="card"><h3>১১৫ ডায়মন্ড</h3><div class="price">99 TK</div><button class="buy-btn" onclick="openModal('১১৫ ডায়মন্ড', '99 TK')">Buy Now</button></div>
-        <div class="card"><h3>২৪৪০ ডায়মন্ড</h3><div class="price">178 TK</div><button class="buy-btn" onclick="openModal('২৪০ ডায়মন্ড', '178 TK')">Buy Now</button></div>
+        <div class="card"><h3>২৪০ ডায়মন্ড</h3><div class="price">178 TK</div><button class="buy-btn" onclick="openModal('২৪০ ডায়মন্ড', '178 TK')">Buy Now</button></div>
+        <div class="card"><h3>৩৫৫ ডায়মন্ড</h3><div class="price">257 TK</div><button class="buy-btn" onclick="openModal('৩৫৫ ডায়মন্ড', '257 TK')">Buy Now</button></div>
+        <div class="card"><h3>৪৮০ ডায়মন্ড</h3><div class="price">336 TK</div><button class="buy-btn" onclick="openModal('৪৮০ ডায়মন্ড', '336 TK')">Buy Now</button></div>
         <div class="card"><h3>৬১০ ডায়মন্ড</h3><div class="price">420 TK</div><button class="buy-btn" onclick="openModal('৬১০ ডায়মন্ড', '420 TK')">Buy Now</button></div>
+        <div class="card"><h3>৮৫০ ডায়মন্ড</h3><div class="price">578 TK</div><button class="buy-btn" onclick="openModal('৮৫০ ডায়মন্ড', '578 TK')">Buy Now</button></div>
         <div class="card"><h3>১২৪০ ডায়মন্ড</h3><div class="price">820 TK</div><button class="buy-btn" onclick="openModal('১২৪০ ডায়মন্ড', '820 TK')">Buy Now</button></div>
+        <div class="card"><h3>২৫৩০ ডায়মন্ড</h3><div class="price">1630 TK</div><button class="buy-btn" onclick="openModal('২৫৩০ ডায়মন্ড', '1630 TK')">Buy Now</button></div>
+        <div class="card"><h3>৫০৬০ ডায়মন্ড</h3><div class="price">3220 TK</div><button class="buy-btn" onclick="openModal('৫০৬০ ডায়মন্ড', '3220 TK')">Buy Now</button></div>
+        <div class="card"><h3>১০১২০ ডায়মন্ড</h3><div class="price">6420 TK</div><button class="buy-btn" onclick="openModal('১০১২০ ডায়মন্ড', '6420 TK')">Buy Now</button></div>
+        <div class="card"><h3>১২৬৫০ ডায়মন্ড</h3><div class="price">8020 TK</div><button class="buy-btn" onclick="openModal('১২৬৫০ ডায়মন্ড', '8020 TK')">Buy Now</button></div>
     </div>
 
-    <h2>উইকলি / মান্থলি প্যাক</h2>
+    <h2>📅 উইকলি / মান্থলি</h2>
     <div class="grid">
-        <div class="card"><h3>Weekly Pass</h3><div class="price">178 TK</div><button class="buy-btn" onclick="openModal('Weekly Pass', '178 TK')">Buy Now</button></div>
-        <div class="card"><h3>Monthly Pass</h3><div class="price">810 TK</div><button class="buy-btn" onclick="openModal('Monthly Pass', '810 TK')">Buy Now</button></div>
-        <div class="card"><h3>1Weekly + 1Monthly</h3><div class="price">968 TK</div><button class="buy-btn" onclick="openModal('1Weekly + 1Monthly', '968 TK')">Buy Now</button></div>
+        <div class="card"><h3>Weekly Membership</h3><div class="price">178 TK</div><button class="buy-btn" onclick="openModal('Weekly Membership', '178 TK')">Buy Now</button></div>
+        <div class="card"><h3>Monthly Membership</h3><div class="price">810 TK</div><button class="buy-btn" onclick="openModal('Monthly Membership', '810 TK')">Buy Now</button></div>
+        <div class="card"><h3>2X Weekly</h3><div class="price">336 TK</div><button class="buy-btn" onclick="openModal('2X Weekly', '336 TK')">Buy Now</button></div>
+        <div class="card"><h3>3X Weekly</h3><div class="price">494 TK</div><button class="buy-btn" onclick="openModal('3X Weekly', '494 TK')">Buy Now</button></div>
+        <div class="card"><h3>5X Weekly</h3><div class="price">810 TK</div><button class="buy-btn" onclick="openModal('5X Weekly', '810 TK')">Buy Now</button></div>
+        <div class="card"><h3>2X Monthly</h3><div class="price">1600 TK</div><button class="buy-btn" onclick="openModal('2X Monthly', '1600 TK')">Buy Now</button></div>
+        <div class="card"><h3>1 Weekly + 1 Monthly</h3><div class="price">968 TK</div><button class="buy-btn" onclick="openModal('1 Weekly + 1 Monthly', '968 TK')">Buy Now</button></div>
+        <div class="card"><h3>4 Weekly + 1 Monthly</h3><div class="price">1442 TK</div><button class="buy-btn" onclick="openModal('4 Weekly + 1 Monthly', '1442 TK')">Buy Now</button></div>
+        <div class="card"><h3>Weekly Discount</h3><div class="price">172 TK</div><button class="buy-btn" onclick="openModal('Weekly Discount', '172 TK')">Buy Now</button></div>
+        <div class="card"><h3>Monthly Discount</h3><div class="price">770 TK</div><button class="buy-btn" onclick="openModal('Monthly Discount', '770 TK')">Buy Now</button></div>
+        <!-- নিচে ২ টাকা ও ৩ টাকার নতুন ফ্ল্যাশ ডিল যুক্ত করা হয়েছে -->
+        <div class="card"><h3>২ টাকার উইকলি</h3><div class="price">21 TK</div><button class="buy-btn special-offer" onclick="openModal('২ টাকার উইকলি', '21 TK')">Buy Now</button></div>
+        <div class="card"><h3>৩ টাকার উইকলি</h3><div class="price">22 TK</div><button class="buy-btn special-offer" onclick="openModal('৩ টাকার উইকলি', '22 TK')">Buy Now</button></div>
     </div>
 
-    <h2>লেভেল আপ পাস</h2>
+    <h2>📈 লেভেল আপ পাস</h2>
     <div class="grid">
         <div class="card"><h3>Full Level Up Pass</h3><div class="price">465 TK</div><button class="buy-btn" onclick="openModal('Full Level Up Pass', '465 TK')">Buy Now</button></div>
-        <div class="card">
-            <h3>Level Up Packages</h3>
-            <div class="price">Sub-Packs</div>
-            <button class="buy-btn" onclick="openDropdownModal('Level Up Pass Sub-Packs', ['Level 6 (60 TK)', 'Level 10 (95 TK)', 'Level 15 (95 TK)', 'Level 20 (95 TK)', 'Level 25 (95 TK)', 'Level 30 (125 TK)'])">View Packs</button>
-        </div>
+        <div class="card"><h3>Level 6</h3><div class="price">60 TK</div><button class="buy-btn" onclick="openModal('Level 6', '60 TK')">Buy Now</button></div>
+        <div class="card"><h3>Level 10, 15, 20, 25</h3><div class="price">95 TK</div><button class="buy-btn" onclick="openModal('Level 10, 15, 20, 25', '95 TK')">Buy Now</button></div>
+        <div class="card"><h3>Level 30</h3><div class="price">125 TK</div><button class="buy-btn" onclick="openModal('Level 30', '125 TK')">Buy Now</button></div>
     </div>
 
-    <h2>উইকলি লাইট</h2>
+    <h2>⚡ উইকলি লাইট</h2>
     <div class="grid">
         <div class="card"><h3>Weekly Lite</h3><div class="price">70 TK</div><button class="buy-btn" onclick="openModal('Weekly Lite', '70 TK')">Buy Now</button></div>
         <div class="card"><h3>2X Weekly Lite</h3><div class="price">110 TK</div><button class="buy-btn" onclick="openModal('2X Weekly Lite', '110 TK')">Buy Now</button></div>
+        <div class="card"><h3>4X Weekly Lite</h3><div class="price">200 TK</div><button class="buy-btn" onclick="openModal('4X Weekly Lite', '200 TK')">Buy Now</button></div>
         <div class="card"><h3>5X Weekly Lite</h3><div class="price">245 TK</div><button class="buy-btn" onclick="openModal('5X Weekly Lite', '245 TK')">Buy Now</button></div>
     </div>
 
-    <h2>স্পেশাল অফার ও ডিসকাউন্ট</h2>
+    <h2>🎁 মিস্ট্রি বক্স</h2>
     <div class="grid">
-        <div class="card"><h3>Weekly Discount</h3><div class="price">172 TK</div><button class="buy-btn" onclick="openModal('Weekly Discount', '172 TK')">Buy Now</button></div>
-        <div class="card"><h3>Monthly Discount</h3><div class="price">770 TK</div><button class="buy-btn" onclick="openModal('Monthly Discount', '770 TK')">Buy Now</button></div>
-        <div class="card">
-            <h3>১ টাকার উইকলি</h3>
-            <div class="price">Multi-Pack</div>
-            <button class="buy-btn" onclick="openDropdownModal('১ টাকার উইকলি', ['1 Taka Weekly (21 TK)', '2 Taka Weekly (22 TK)'])">View Packs</button>
-        </div>
-        <div class="card">
-            <h3>২০ টাকার গেম</h3>
-            <div class="price">Multi-Box</div>
-            <button class="buy-btn" onclick="openDropdownModal('২০ টাকার গেম', ['20 Takar Box (40 TK)', '2000 Takar Box (2020 TK)', '20000 Takar Box (20020 TK)'])">View Boxes</button>
-        </div>
+        <div class="card"><h3>Mini Mystery Box</h3><div class="price">70 TK</div><button class="buy-btn" onclick="openModal('Mini Mystery Box', '70 TK')">Buy Now</button></div>
+        <div class="card"><h3>1X Mystery Box</h3><div class="price">110 TK</div><button class="buy-btn" onclick="openModal('1X Mystery Box', '110 TK')">Buy Now</button></div>
+        <div class="card"><h3>5X Mystery Box</h3><div class="price">470 TK</div><button class="buy-btn" onclick="openModal('5X Mystery Box', '470 TK')">Buy Now</button></div>
+        <div class="card"><h3>10X Mystery Box</h3><div class="price">920 TK</div><button class="buy-btn" onclick="openModal('10X Mystery Box', '920 TK')">Buy Now</button></div>
     </div>
 
-    <div class="modal" id="orderModal">
+    <h2>✈️ স্পেশাল এয়ারড্রপ</h2>
+    <div class="grid">
+        <div class="card"><h3>এয়ারড্রপ ($0.99)</h3><div class="price">160 TK</div><button class="buy-btn" onclick="openModal('এয়ারড্রপ ($0.99)', '160 TK')">Buy Now</button></div>
+        <div class="card"><h3>এয়ারড্রপ ($1.99)</h3><div class="price">300 TK</div><button class="buy-btn" onclick="openModal('এয়ারড্রপ ($1.99)', '300 TK')">Buy Now</button></div>
+        <div class="card"><h3>এয়ারড্রপ ($2.99)</h3><div class="price">440 TK</div><button class="buy-btn" onclick="openModal('এয়ারড্রপ ($2.99)', '440 TK')">Buy Now</button></div>
+        <div class="card"><h3>এয়ারড্রপ ($4.99)</h3><div class="price">640 TK</div><button class="buy-btn" onclick="openModal('এয়ারড্রপ ($4.99)', '640 TK')">Buy Now</button></div>
+    </div>
+
+    <h2>🎮 ২০ টাকার গেম বক্স</h2>
+    <div class="grid">
+        <div class="card"><h3>20 Takar Box</h3><div class="price">40 TK</div><button class="buy-btn" onclick="openModal('20 Takar Box', '40 TK')">Buy Now</button></div>
+        <div class="card"><h3>2000 Takar Box</h3><div class="price">2020 TK</div><button class="buy-btn" onclick="openModal('2000 Takar Box', '2020 TK')">Buy Now</button></div>
+        <div class="card"><h3>20000 Takar Box</h3><div class="price">20020 TK</div><button class="buy-btn" onclick="openModal('20000 Takar Box', '20020 TK')">Buy Now</button></div>
+    </div>
+
+    <!-- Helpline Button -->
+    <a href="https://t.me/arju_topup_store_bot" target="_blank" class="help-link">💬 যেকোনো সমস্যায় হেল্পলাইন বটে যোগাযোগ করুন</a>
+
+    <!-- Order Modal Form -->
+    <div id="orderModal" class="modal">
         <div class="modal-content">
             <span class="close-btn" onclick="closeModal()">&times;</span>
-            <h3 id="selectedPackage">অর্ডার ফর্ম</h3>
-            <p>বিকাশ পার্সোনাল নাম্বার: <b style="color: #ff3399; font-size: 15px;">01945410070</b><br>টাকা পাঠিয়ে নিচের ফর্মটি পূরণ করুন।</p>
+            <h3 id="modalTitle" style="margin-bottom: 20px; color: #38bdf8; text-align: center;">অর্ডার ফর্ম</h3>
             
-            <form id="topupForm">
-                <input type="hidden" id="packageInput">
-                <div id="subPackContainer" style="display: none;">
-                    <select id="subPackSelect"></select>
+            <form id="popOrderForm">
+                <input type="hidden" id="selectedPack">
+                <input type="hidden" id="selectedPrice">
+
+                <div class="form-group">
+                    <label for="playerUid">Player UID:</label>
+                    <input type="number" id="playerUid" placeholder="গেম আইডি (UID) লিখুন" required>
                 </div>
-                <input type="number" id="player_id" placeholder="Player UID" required>
-                <input type="number" id="amount" placeholder="টাকার পরিমাণ (Tk)" required>
-                <input type="text" id="trx_id" placeholder="bKash TrxID (১০ অক্ষর)" required>
-                <button type="submit" class="buy-btn" style="padding: 12px; font-size: 14px;" id="submitBtn">Confirm Order</button>
+
+                <div class="form-group">
+                    <label for="payMethod">Payment Method:</label>
+                    <select id="payMethod" required>
+                        <option value="" disabled selected>পেমেন্ট মাধ্যম সিলেক্ট করুন</option>
+                        <option value="Bkash">বিকাশ (Bkash)</option>
+                        <option value="Nagad">নগদ (Nagad)</option>
+                        <option value="Rocket">রকেট (Rocket)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="transactionId">Transaction ID (TrxID):</label>
+                    <input type="text" id="transactionId" placeholder="TrxID এখানে দিন" required>
+                </div>
+
+                <button type="submit" class="submit-btn">Submit Order</button>
             </form>
         </div>
     </div>
 
-    <a href="https://t.me/arju_topup_store_bot" target="_blank" class="telegram-support">💬 Support</a>
-
     <script>
+        // বটের টোকেন এবং আসল চ্যাট আইডি
+        const botToken = "8731727044:AAH-G0NUdvJLj_mfNNBqddRHXZejvuwBB90";
+        const chatId = "8431829574"; 
+
+        // পেজ ওপেন হওয়ার সাথে সাথে টাইমার চেক করবে
+        document.addEventListener("DOMContentLoaded", function() {
+            updateTimerDisplay();
+            setInterval(updateTimerDisplay, 1000); // প্রতি সেকেন্ডে টাইমার আপডেট করবে
+        });
+
+        // মডাল ওপেন করার ফাংশন
         function openModal(packageName, price) {
-            document.getElementById('orderModal').style.display = 'flex';
-            document.getElementById('selectedPackage').innerText = packageName + " (" + price + ")";
-            document.getElementById('packageInput').value = packageName + " (" + price + ")";
-            document.getElementById('subPackContainer').style.display = 'none';
+            document.getElementById("orderModal").style.display = "flex";
+            document.getElementById("modalTitle").innerText = `${packageName} - (${price})`;
+            document.getElementById("selectedPack").value = packageName;
+            document.getElementById("selectedPrice").value = price;
         }
 
-        function openDropdownModal(categoryName, optionsArray) {
-            document.getElementById('orderModal').style.display = 'flex';
-            document.getElementById('selectedPackage').innerText = categoryName;
-            document.getElementById('packageInput').value = categoryName;
-            
-            const select = document.getElementById('subPackSelect');
-            select.innerHTML = '';
-            optionsArray.forEach(opt => {
-                let el = document.createElement('option');
-                el.value = opt;
-                el.innerText = opt;
-                select.appendChild(el);
-            });
-            document.getElementById('subPackContainer').style.display = 'block';
+        // মডাল বন্ধ করার ফাংশন
+        function closeModal() {
+            document.getElementById("orderModal").style.display = "none";
+            document.getElementById("popOrderForm").reset();
         }
 
-        function closeModal() { document.getElementById('orderModal').style.display = 'none'; }
-        
-        document.getElementById('topupForm').addEventListener('submit', function(e) {
-            e.preventDefault();
+        // টাইমার কাউন্টডাউন এবং বাটন লক করার ফাংশন
+        function updateTimerDisplay() {
+            const lockTime = localStorage.getItem("special_offer_lock");
+            const specialButtons = document.querySelectorAll(".special-offer");
             
-            const uid = document.getElementById('player_id').value;
-            const amount = document.getElementById('amount').value;
-            const trxId = document.getElementById('trx_id').value;
-            let pack = document.getElementById('packageInput').value;
-            
-            if(document.getElementById('subPackContainer').style.display === 'block') {
-                pack = pack + " - " + document.getElementById('subPackSelect').value;
+            if (!lockTime) {
+                specialButtons.forEach(btn => {
+                    btn.disabled = false;
+                    btn.innerText = "Buy Now";
+                });
+                return;
             }
 
-            const submitBtn = document.getElementById('submitBtn');
-            submitBtn.innerText = "Sending Order...";
-            submitBtn.disabled = true;
+            const currentTime = new Date().getTime();
+            const timeLeft = lockTime - currentTime;
 
-            const botToken = '8580807277:AAGfBJl7NICn7rFVkggpq-EDOMoHX32MSgY';
-            const chatId = '8431829574'; 
+            if (timeLeft <= 0) {
+                localStorage.removeItem("special_offer_lock");
+                specialButtons.forEach(btn => {
+                    btn.disabled = false;
+                    btn.innerText = "Buy Now";
+                });
+            } else {
+                // মিনিট এবং সেকেন্ড হিসাব করা
+                const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+                
+                specialButtons.forEach(btn => {
+                    btn.disabled = true;
+                    btn.innerText = `Next: ${minutes}m ${seconds}s`;
+                });
+            }
+        }
 
-            const message = `🔥 *নতুন অর্ডার (Arju Store)!* 🔥\n\n` +
-                            `🎮 *Player UID:* \`${uid}\`\n` +
-                            `💎 *Package:* ${pack}\n` +
-                            `💰 *Paid Amount:* ${amount} Tk\n` +
-                            `✅ *bKash TrxID:* \`${trxId}\`\n\n` +
-                            `⏳ দ্রুত চেক করে ডায়মন্ড দিয়ে দিন!`;
+        // ফর্ম সাবমিট হ্যান্ডলার
+        document.getElementById("popOrderForm").addEventListener("submit", function(e) {
+            e.preventDefault();
+
+            const pack = document.getElementById("selectedPack").value;
+            const price = document.getElementById("selectedPrice").value;
+            const uid = document.getElementById("playerUid").value;
+            const method = document.getElementById("payMethod").value;
+            const trxId = document.getElementById("transactionId").value;
+
+            const message = `📦 নতুন অর্ডার এসেছে!\n------------------------\n💎 Package: ${pack}\n💰 Price: ${price}\n🎮 Player UID: ${uid}\n💸 Payment Method: ${method}\n🆔 TrxID: ${trxId}\n🕒 Time: ${new Date().toLocaleString()}`;
 
             fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ chat_id: chatId, text: message, parse_mode: 'Markdown' })
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    chat_id: chatId,
+                    text: message
+                })
             })
-            .then(res => res.json())
-            .then(data => {
-                if(data.ok) {
-                    alert("✅ অর্ডার সফল হয়েছে! ৫ মিনিটে ডায়মন্ড পেয়ে যাবেন।");
-                    document.getElementById('topupForm').reset();
+            .then(response => {
+                if(response.ok) {
+                    alert("আপনার অর্ডারটি সফলভাবে সাবমিট হয়েছে! Arju Bhai খুব দ্রুত এটি কমপ্লিট করে দেবেন।");
+                    
+                    // যদি ২ টাকা বা ৩ টাকার উইকলি অর্ডার সফল হয়, তবে ১ ঘণ্টার লক বসবে
+                    if (pack.includes("২ টাকার") || pack.includes("৩ টাকার")) {
+                        const oneHourLater = new Date().getTime() + (60 * 60 * 1000); // ১ ঘণ্টা = ৬০ মিনিট * ৬০ সেকেন্ড * ১০০০ মিলি সেকেন্ড
+                        localStorage.setItem("special_offer_lock", oneHourLater);
+                        updateTimerDisplay();
+                    }
+
                     closeModal();
-                } else { alert("সমস্যা হয়েছে, আবার চেষ্টা করুন।"); }
+                } else {
+                    alert("অর্ডার পাঠাতে সমস্যা হয়েছে, দয়া করে আবার চেষ্টা করুন।");
+                }
             })
-            .catch(() => alert('কোথাও ভুল হয়েছে!'))
-            .finally(() => { submitBtn.innerText = "Confirm Order"; submitBtn.disabled = false; });
+            .catch(error => {
+                alert("নেটওয়ার্ক সমস্যার কারণে অর্ডার পাঠানো যায়নি।");
+            });
         });
+
+        window.onclick = function(event) {
+            const modal = document.getElementById("orderModal");
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
     </script>
 </body>
 </html>
